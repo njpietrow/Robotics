@@ -1,3 +1,4 @@
+from p_controller import PController
 class Run:
     def __init__(self, factory):
         self.create = factory.create_create()
@@ -5,10 +6,10 @@ class Run:
         self.sonar = factory.create_sonar()
         self.servo = factory.create_servo()
         # define the gains here
-        self.kp = ...
+        self.kp = 4
         self.kd = ...
-        self.minOutput = ...
-        self.maxOutput = ...
+        self.minOutput = -500
+        self.maxOutput = 500
         # instantiate your controllers here
         self.p_controller = PController(self.kp, self.minOutput, self.maxOutput)
         # self.pd_controller = PDController(self.kp, self.kd, self.minOutput, self.maxOutput)
@@ -28,7 +29,7 @@ class Run:
             distance = self.sonar.get_distance()
             if distance is not None:
                 print(distance)
-                # update controllers and move robot here
-                # ...
+                vX, vY = self.p_controller.update(distance, base_speed, goal_distance)
+                print(str(vX) + ", " + str(vY))
 
                 self.time.sleep(0.01)
