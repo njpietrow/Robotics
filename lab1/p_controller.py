@@ -14,8 +14,8 @@ class PController:
 		vLError = goalSpeed - self.vLeft 
 		vRError = goalSpeed - self.vRight
 		#if negative, need to go right
-		self.vLeft = self.vLeft + (vLError + self.kp * dError)
-		self.vRight = self.vRight + (vRError - self.kp * dError)
+		self.vLeft += (vLError + self.kp * dError)
+		self.vRight += (vRError - self.kp * dError)
 
 		if(self.vLeft < self.minOutput):
 			self.vLeft = self.minOutput
@@ -23,7 +23,8 @@ class PController:
 			self.vLeft = self.maxOutput	
 		if(self.vRight < self.minOutput):
 			self.vRight = -self.minOutput
-		elif(self.vRight > self.maxOutput):
+		elif(self.vRight > self.maxOutput): 
 			self.vRight = self.maxOutput
+
 		return self.vLeft , self.vRight
 
