@@ -6,7 +6,7 @@ class Run:
         self.sonar = factory.create_sonar()
         self.servo = factory.create_servo()
         # define the gains here
-        self.kp = 4
+        self.kp = 300
         self.kd = ...
         self.minOutput = -500
         self.maxOutput = 500
@@ -30,6 +30,6 @@ class Run:
             if distance is not None:
                 print(distance)
                 vX, vY = self.p_controller.update(distance, base_speed, goal_distance)
-                print(str(vX) + ", " + str(vY))
-
+                # print(str(vX) + ", " + str(vY))
+                self.create.drive_direct(vX,vY)
                 self.time.sleep(0.01)
