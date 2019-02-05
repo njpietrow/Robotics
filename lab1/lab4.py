@@ -8,8 +8,8 @@ class Run:
         self.sonar = factory.create_sonar()
         self.servo = factory.create_servo()
         # define the gains here
-        self.kp = 300
-        self.kd = 3
+        self.kp = 500
+        self.kd = -3
         self.minOutput = -500
         self.maxOutput = 500
         # instantiate your controllers here

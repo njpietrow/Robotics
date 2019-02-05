@@ -20,12 +20,7 @@ class PDController:
 		vLError = goalSpeed - self.vLeft 
 		vRError = goalSpeed - self.vRight
 		rateOfChange = change_distance/change_time
-		print("rate of change " + str(rateOfChange))
-		if(rateOfChange > 10.0):
-			rateOfChange = 1
-		elif(rateOfChange == 0):
-			rateOfChange = .1
-		
+		print("ROF " + str(self.kd*rateOfChange))
 
 		#if negative, need to go right
 		self.vLeft += (vLError + self.kp*dError + self.kd*rateOfChange)
