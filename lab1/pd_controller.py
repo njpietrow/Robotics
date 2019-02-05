@@ -18,7 +18,7 @@ class PDController:
 	def update(self, currDistance, goalSpeed, goalDistance, change_distance, change_time):
 		dError = currDistance - goalDistance
 		rateOfChange = change_distance/change_time
-		print("Rate of Change " + str(self.kd*rateOfChange))
+		print("Rate of Change: " + str(self.kd*rateOfChange))
 
 		#if negative, need to go right
 		self.vLeft = goalSpeed + self.kp*dError + self.kd*rateOfChange

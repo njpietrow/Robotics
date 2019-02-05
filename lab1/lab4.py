@@ -7,7 +7,7 @@ class Run:
         self.time = factory.create_time_helper()
         self.sonar = factory.create_sonar()
         self.servo = factory.create_servo()
-        
+
         # define the gains here
         self.kp = 1000
         self.kd = 25
@@ -35,7 +35,7 @@ class Run:
         while True:
             distance = self.sonar.get_distance()
             if distance is not None:
-                print(distance)
+                print("Distance: " + str(distance))
 
                 
                 change_distance = distance - prev_distance
