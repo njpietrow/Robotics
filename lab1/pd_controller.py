@@ -17,14 +17,12 @@ class PDController:
 
 	def update(self, currDistance, goalSpeed, goalDistance, change_distance, change_time):
 		dError = currDistance - goalDistance
-		vLError = goalSpeed - self.vLeft 
-		vRError = goalSpeed - self.vRight
 		rateOfChange = change_distance/change_time
 		print("ROF " + str(self.kd*rateOfChange))
 
 		#if negative, need to go right
-		self.vLeft += (vLError + self.kp*dError + self.kd*rateOfChange)
-		self.vRight += (vRError - self.kp*dError - self.kd*rateOfChange)
+		self.vLeft = goalSpeed + self.kp*dError + self.kd*rateOfChange
+		self.vRight = goalSpeed - self.kp*dError - self.kd*rateOfChange
 
 		if(self.vLeft < self.minOutput):
 			self.vLeft = self.minOutput

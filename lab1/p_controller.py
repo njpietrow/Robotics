@@ -13,11 +13,10 @@ class PController:
 		self.IntegralRightError = 0
 	def update(self, currDistance, goalSpeed, goalDistance):
 		dError = currDistance - goalDistance
-		vLError = goalSpeed - self.vLeft 
-		vRError = goalSpeed - self.vRight
+		
 		#if negative, need to go right
-		self.vLeft += (vLError + self.kp * dError)
-		self.vRight += (vRError - self.kp * dError)
+		self.vLeft = goalSpeed + self.kp*dError 
+		self.vRight = goalSpeed - self.kp*dError
 
 		if(self.vLeft < self.minOutput):
 			self.vLeft = self.minOutput
