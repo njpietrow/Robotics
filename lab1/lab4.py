@@ -7,14 +7,16 @@ class Run:
         self.time = factory.create_time_helper()
         self.sonar = factory.create_sonar()
         self.servo = factory.create_servo()
+        
         # define the gains here
-        self.kp = 300
-        self.kd = 50
+        self.kp = 1000
+        self.kd = 25
         self.minOutput = -500
         self.maxOutput = 500
+
         # instantiate your controllers here
-        self.p_controller = PController(self.kp, self.minOutput, self.maxOutput)
-        # self.pd_controller = PDController(self.kp, self.kd, self.minOutput, self.maxOutput)
+        # self.p_controller = PController(self.kp, self.minOutput, self.maxOutput)
+        self.pd_controller = PDController(self.kp, self.kd, self.minOutput, self.maxOutput)
 
 
     def run(self):
@@ -37,9 +39,15 @@ class Run:
 
                 
                 change_distance = distance - prev_distance
-                # vX, vY = self.pd_controller.update(distance, base_speed, goal_distance, change_distance, .01)
-                vX, vY = self.p_controller.update(distance, base_speed, goal_distance)
-                # print(str(vX) + ", " + str(vY))
+                prev_distance = distance
+
+                # ------------ pd controller -------------------
+                vX, vY = self.pd_controller.update(distance, base_speed, goal_distance, change_distance, .01)
+                # ----------------------------------------------
+
+                # ------------ p controller --------------------
+                # vX, vY = self.p_controller.update(distance, base_speed, goal_distance)
+                # ----------------------------------------------
+
                 self.create.drive_direct(vX,vY)
                 self.time.sleep(0.01)
-                prev_distance = distance
