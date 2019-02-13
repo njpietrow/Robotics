@@ -109,7 +109,7 @@ class Run:
         plt.plot(self.result[:,3], self.result[:,4], label="ground truth")
         plt.grid()
         plt.legend()
-        plt.savefig("Hmwrk2_positions_300.png") # make s ure to not overwrite plots
+        plt.savefig("Hmwrk2_positions_300.png") # make sure to not overwrite plots
 
 
 

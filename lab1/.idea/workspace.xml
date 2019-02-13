@@ -2,16 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="42760a80-7c72-4afb-ae94-29a56ddff9de" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab5.py" beforeDir="false" afterPath="$PROJECT_DIR$/lab5.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab5_images/PD (pi:2) .png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab5_images/PD -(pi:2) .png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab5_images/PD pi .png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab5_images/PID (300,-300,300).png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab5_images/PID (300,-500,500) .png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab5_images/PID (50,-300,300).png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab5_images/PID (500,-200.200).png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab5_images/XY pos(300,-300,300) .png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hmwrk2.py" beforeDir="false" afterPath="$PROJECT_DIR$/hmwrk2.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -42,7 +33,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lab5.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="491">
+            <state relative-caret-position="308">
               <caret line="76" column="8" selection-start-line="76" selection-start-column="8" selection-end-line="77" selection-end-column="22" />
               <folding>
                 <element signature="e#0#29#0" expanded="true" />
@@ -54,8 +45,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/hmwrk2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="103" column="28" lean-forward="true" selection-start-line="103" selection-start-column="28" selection-end-line="103" selection-end-column="28" />
+            <state relative-caret-position="473">
+              <caret line="111" column="56" selection-start-line="111" selection-start-column="56" selection-end-line="111" selection-end-column="56" />
               <folding>
                 <element signature="e#67#96#0" expanded="true" />
               </folding>
@@ -184,12 +175,12 @@
       <workItem from="1549910915584" duration="7367000" />
       <workItem from="1549928347025" duration="7093000" />
       <workItem from="1550006282183" duration="1916000" />
-      <workItem from="1550008543683" duration="3452000" />
+      <workItem from="1550008543683" duration="3613000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19828000" />
+    <option name="totallyTimeSpent" value="19989000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="11" y="23" width="1400" height="837" extended-state="0" />
@@ -302,15 +293,15 @@
     <entry file="file://$PROJECT_DIR$/Hmwrk2_positions.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/Hmwrk2_positions_300.png">
+    <entry file="file://$PROJECT_DIR$/Hmwrk2_positions_100.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/Hmwrk2_positions_100.png">
+    <entry file="file://$PROJECT_DIR$/Hmwrk2_positions_300.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/lab5.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="491">
+        <state relative-caret-position="308">
           <caret line="76" column="8" selection-start-line="76" selection-start-column="8" selection-end-line="77" selection-end-column="22" />
           <folding>
             <element signature="e#0#29#0" expanded="true" />
@@ -320,8 +311,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/hmwrk2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="103" column="28" lean-forward="true" selection-start-line="103" selection-start-column="28" selection-end-line="103" selection-end-column="28" />
+        <state relative-caret-position="473">
+          <caret line="111" column="56" selection-start-line="111" selection-start-column="56" selection-end-line="111" selection-end-column="56" />
           <folding>
             <element signature="e#67#96#0" expanded="true" />
           </folding>
