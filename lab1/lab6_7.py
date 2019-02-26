@@ -64,11 +64,14 @@ class Run:
                 goal_theta = math.atan2(goal_y-self.odometry.y, goal_x-self.odometry.x)
                 distance = self.sonar.get_distance()
                 print(distance)
+
+                # check to see if the robot is at its goal
                 check = (abs(goal_y)-abs(self.odometry.y) + abs(goal_x)-abs(self.odometry.x))
                 if abs(check) < .005:
                     index += 1
                     if index == 4:
                         break
+                    # update the robots new goal
                     goal_x = waypoints[index][0]
                     goal_y = waypoints[index][1]
                     print(goal_x)
@@ -81,16 +84,17 @@ class Run:
                 # print(goal_theta)
                 # print(self.odometry.theta)
 
-                # call controller's update function
+                # determine how to control the robot based on obstacle presence
                 if distance < 0.5 or avoid_time > self.time.time():
+                    # need to avoid the robot for extra time since sensor straight forward
                     avoid_time = self.time.time() + 2
+                    # output is based on the distance from the obstacle, could make a controller
                     output = 50/distance
-                    self.create.drive_direct(int(base_speed + output), int(base_speed - output))
                 else:
+                    # call controller's update function
                     output = self.pidTheta.update(self.odometry.theta, goal_theta, self.time.time())
-                # output_velocity = self.pidVelocity.update(self.odometry.theta, goal_theta, self.time.time())
 
-                # and the self.create.drive_direct(left, right) here
+                # call the self.create.drive_direct(left, right) here
                 self.create.drive_direct(int(base_speed + output), int(base_speed - output))
 
 
