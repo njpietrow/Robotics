@@ -30,23 +30,46 @@ class Run:
             create2.Sensor.RightEncoderCounts,
         ])
 
-        goal_x = 0.5
-        goal_y = -0.5
-        base_speed = 100
+
+        base_speed = 200
+        waypoints = [
+            [2.0, 0.0],
+            [3.0, 2.0],
+            [2.5, 2.0],
+            [0.0, 1.5],
+            [0.0, 0.0]
+        ]
+
+        index = 0
+
+        goal_x = waypoints[index][0]
+        goal_y = waypoints[index][1]
 
         result = np.empty((0,5))
-        end_time = self.time.time() + 10
+        end_time = self.time.time() + 100
         while self.time.time() < end_time:
             state = self.create.update()
             if state is not None:
                 self.odometry.update(state.leftEncoderCounts, state.rightEncoderCounts)
                 goal_theta = math.atan2(goal_y - self.odometry.y, goal_x - self.odometry.x)
                 theta = math.atan2(math.sin(self.odometry.theta), math.cos(self.odometry.theta))
-                print("[{},{},{}]".format(self.odometry.x, self.odometry.y, math.degrees(self.odometry.theta)))
-                new_row = [self.time.time(), math.degrees(self.odometry.theta), math.degrees(goal_theta), self.odometry.x, self.odometry.y]
+                print("[%.6f, %.6f, %.6f]" % (self.odometry.x, self.odometry.y, math.degrees(self.odometry.theta)))
+                new_row = [self.time.time(), math.degrees(self.odometry.theta), math.degrees(goal_theta),
+                           self.odometry.x, self.odometry.y]
                 result = np.vstack([result, new_row])
 
                 output_theta = self.pidTheta.update(self.odometry.theta, goal_theta, self.time.time())
+
+                check = (abs(goal_y) - abs(self.odometry.y) + abs(goal_x) - abs(self.odometry.x))
+                if abs(check) < .005:
+                    index += 1
+                    if index == 4:
+                        break
+                    # update the robots new goal
+                    goal_x = waypoints[index][0]
+                    goal_y = waypoints[index][1]
+                    print(goal_x)
+                    print(goal_y)
 
                 # base version:
                 # self.create.drive_direct(int(base_speed+output_theta), int(base_speed-output_theta))
@@ -62,10 +85,10 @@ class Run:
                 self.create.drive_direct(int(output_theta + output_distance), int(-output_theta + output_distance))
 
         plt.figure()
-        plt.plot(result[:,0], result[:,1])
-        plt.plot(result[:,0], result[:,2])
-        plt.savefig("angle.png")
-
-        plt.figure()
         plt.plot(result[:,3], result[:,4])
-        plt.savefig("position.png")
+        plt.scatter([2], [0], color="r", s=40, label="goal1")
+        plt.scatter([3], [2], color="r", s=40, label="goal2")
+        plt.scatter([2.5], [2], color="r", s=40, label="goal3")
+        plt.scatter([0], [1.5], color="r", s=40, label="goal4")
+        plt.scatter([0], [0], color="r", s=40, label="goal5")
+        plt.savefig("lab6_position_new.png")
