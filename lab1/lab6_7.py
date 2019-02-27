@@ -8,7 +8,7 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
 import odometry
-import pd_controller2
+import pd_controller
 import pid_controller
 
 
@@ -19,8 +19,8 @@ class Run:
         self.sonar = factory.create_sonar()
         self.servo = factory.create_servo()
         self.odometry = odometry.Odometry()
-        self.pdTheta = pd_controller2.PDController(500, 100, -200, 200)
-        self.pd_controller = pd_controller2.PDController(1000, 100, -85, 85, is_angle=True)
+        self.pdTheta = pd_controller.PDController(500, 100, -200, 200)
+        self.pd_controller = pd_controller.PDController(1000, 25, -75, 75)
         self.pidTheta = pid_controller.PIDController(300, 5, 50, [-10, 10], [-200, 200], is_angle=True)
         self.pidDistance = pid_controller.PIDController(1000, 0, 50, [0, 0], [-200, 200], is_angle=False)
 
@@ -34,7 +34,7 @@ class Run:
             create2.Sensor.RightEncoderCounts,
         ])
         # self.servo.go_to(70)
-        goal_distance = 0.5
+        goal_distance = 0.6
         base_speed = 200
 
         waypoints = [
@@ -56,7 +56,7 @@ class Run:
 
         # change result plot for the #4 has 5 data points, not 3
         result = np.empty((0,5))
-        end_time = self.time.time() + 300
+        end_time = self.time.time() + 400
         avoid_time = self.time.time()
         while self.time.time() < end_time:
             state = self.create.update()
@@ -86,22 +86,20 @@ class Run:
                 # print(self.odometry.theta)
 
                 # determine how to control the robot based on obstacle presence
-                if distance < .5:
+                if avoid_time > self.time.time() and abs(math.degrees(self.odometry.theta)) - abs(math.degrees(goal_theta)) < 60:
+
+                    output = self.pd_controller.update(distance, goal_distance, self.time.time())
+                    self.create.drive_direct(int(base_speed - output), int(base_speed + output))
+                    self.servo.go_to(130)
+                elif distance < .6:
                     avoid_time = self.time.time() + 3
 
-                    self.servo.go_to(77)
+                    self.servo.go_to(70)
                     output = self.pd_controller.update(distance, goal_distance, self.time.time())
                     self.create.drive_direct(int(base_speed - output), int(base_speed + output))
-
-                elif avoid_time > self.time.time() and math.degrees(self.odometry.theta) - math.degrees(goal_theta) < 60:
-
-                    output = self.pd_controller.update(distance, goal_distance, self.time.time())
-                    self.create.drive_direct(int(base_speed - output), int(base_speed + output))
-                    self.servo.go_to(77)
-
                 else:
                     # call controller's update function
-                    self.servo.go_to(-10)
+                    self.servo.go_to(-15)
                     output = self.pidTheta.update(self.odometry.theta, goal_theta, self.time.time())
                     # self.create.drive_direct(int(base_speed + output), int(base_speed - output))
                     distance = math.sqrt(math.pow(goal_x - self.odometry.x, 2) + math.pow(goal_y - self.odometry.y, 2))
