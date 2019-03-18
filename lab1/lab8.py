@@ -1,4 +1,4 @@
-import lab9_map
+import lab8_map
 import math
 
 
@@ -15,7 +15,7 @@ class Run:
         self.sonar = factory.create_sonar()
         # Add the IP-address of your computer here if you run on the robot
         self.virtual_create = factory.create_virtual_create()
-        self.map = lab9_map.Map("lab9_map.json")
+        self.map = lab8_map.Map("lab8_map.json")
 
     def run(self):
         # This is an example on how to visualize the pose of our estimated position
