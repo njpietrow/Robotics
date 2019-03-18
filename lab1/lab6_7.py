@@ -37,13 +37,7 @@ class Run:
         goal_distance = 0.6
         base_speed = 200
 
-        waypoints = [
-            [2.0, 0.0],
-            [3.0, 2.0],
-            [2.5, 2.0],
-            [0.0, 1.5],
-            [0.0, 0.0]
-        ]
+        waypoints = [[0, 0], [0, 2], [2, 2], [2, 1], [1, 0]]
         index = 0
 
         goal_x = waypoints[index][0]
@@ -68,9 +62,10 @@ class Run:
 
                 # check to see if the robot is at its goal
                 check = (abs(goal_y)-abs(self.odometry.y) + abs(goal_x)-abs(self.odometry.x))
-                if abs(check) < .075:
+                print(check)
+                if abs(check) < .1:
                     index += 1
-                    if index == 4:
+                    if index == 5:
                         break
                     # update the robots new goal
                     goal_x = waypoints[index][0]
@@ -120,12 +115,13 @@ class Run:
         # plt.legend()
         # plt.savefig("lab6_angle.png") # make s ure to not overwrite plots
 
+        # [[0, 0], [0, 2], [2, 2], [2, 1], [1, 0]]
         # plotting for go-to-goal (goal_x, goal_x):
         plt.figure()
         plt.plot(result[:, 3], result[:, 4])
-        plt.scatter([2], [0], color="r", s=40, label="goal1")
-        plt.scatter([3], [2], color="r", s=40, label="goal2")
-        plt.scatter([2.5], [2], color="r", s=40, label="goal3")
-        plt.scatter([0], [1.5], color="r", s=40, label="goal4")
-        plt.scatter([0], [0], color="r", s=40, label="goal5")
+        plt.scatter([0], [0], color="r", s=40, label="goal1")
+        plt.scatter([0], [2], color="r", s=40, label="goal2")
+        plt.scatter([2], [2], color="r", s=40, label="goal3")
+        plt.scatter([2], [1], color="r", s=40, label="goal4")
+        plt.scatter([1], [0], color="r", s=40, label="goal5")
         plt.savefig("lab7_avoid.png")

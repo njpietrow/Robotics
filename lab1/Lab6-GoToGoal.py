@@ -81,7 +81,7 @@ class Run:
 
                 # improved version 2: fuse with velocity controller
                 distance = math.sqrt(math.pow(goal_x - self.odometry.x, 2) + math.pow(goal_y - self.odometry.y, 2))
-                output_distance = self.pidDistance.update(0, distance, self.time.time())
+                output_distance = self.pidDistace.update(0, distance, self.time.time())
                 self.create.drive_direct(int(output_theta + output_distance), int(-output_theta + output_distance))
 
         plt.figure()
