@@ -26,18 +26,25 @@ class ParticleFilter:
 			self.p_List.append(0)
 			self.p_List.append(temp_thetas[x])
 			self.Particle_List.append(self.p)
-		
+		print(len(self.Particle_List))
 		self.w = create2.Specs.WheelDistanceInMM/1000
+
+		self.map = lab8_map.Map("lab8_map.json")
 	
 	def update_particles(self):
 		self.p_List = []
+		print("num particle:")
+		print(self.num_particles)
 		for x in range(self.num_particles):
-			self.p_List.append(Particle_List[x].x)
-			self.p_List.append(Particle_List[x].y)
+			self.p_List.append(self.Particle_List[x].x)
+			self.p_List.append(self.Particle_List[x].y)
 			self.p_List.append(0)
-			self.p_List.append(Particle_List[x].theta)
+			self.p_List.append(self.Particle_List[x].theta)
+		print(len(self.p_List))
 
 	def Movement(self, action):
+		update_x = 0
+		update_y = 0
 		for i in range(self.num_particles):
 			if action == "Move Foward":
 				update_x += .1 * math.cos(self.current_theta)
@@ -52,10 +59,12 @@ class ParticleFilter:
 				update_theta = -.2/self.w 
 				update_theta = math.fmod(update_theta+self.Particle_List[i].theta, 2 * math.pi)
 				self.Particle_List[i].theta = update_theta
+		self.Estimation()
+		self.update_particles()
 
 	def Sensing(self):
-		for i in range(self.num_particles)
-			d = closest_distance((Particle_List[i].x,Particle_List[i].y),Particle_List[i].theta)
+		for i in range(self.num_particles):
+			d = self.map.closest_distance((self.Particle_List[i].x,self.Particle_List[i].y),self.Particle_List[i].theta)
 			
 
 	# use closest_distance to find actual distance from wall for each particle
@@ -67,22 +76,40 @@ class ParticleFilter:
 	def Estimation(self):
 		num_popped = 0
 		popped_probability = 0
-		for i in range(self.num_particles):
+		i = 0
+		while i < self.num_particles:
 			if self.Particle_List[i].x > self.map_x:
 				popped_probability += self.Particle_List[i].prob
 				self.Particle_List.pop(i)
 				num_popped += 1
+				self.num_particles -= 1
+			elif self.Particle_List[i].x < 0:
+				popped_probability += self.Particle_List[i].prob
+				self.Particle_List.pop(i)
+				num_popped += 1
+				self.num_particles -= 1
 			elif self.Particle_List[i].y > self.map_y:
 				popped_probability += self.Particle_List[i].prob
 				self.Particle_List.pop(i)
 				num_popped += 1
-			elif self.Particle_List[i].prob < self.prob_cutoff:
+				self.num_particles -= 1
+			elif self.Particle_List[i].y < 0:
 				popped_probability += self.Particle_List[i].prob
 				self.Particle_List.pop(i)
 				num_popped += 1
-			else:
-				pass
+				self.num_particles -= 1
+			i += 1
+			# elif self.Particle_List[i].prob < self.prob_cutoff:
+			# 	popped_probability += self.Particle_List[i].prob
+			# 	self.Particle_List.pop(i)
+			# 	num_popped += 1
+			# 	self.num_particles -= 1
+			# else:
+			# 	pass
 				#potentially double probability
-		self.current_theta = 0
-		self.current_y = 0
-		self.current_x = 0
+		print("num popped")
+		print(num_popped)
+		# 	TODO
+		# self.current_theta = 0
+		# self.current_y = 0
+		# self.current_x = 0
