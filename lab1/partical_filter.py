@@ -26,7 +26,7 @@ class ParticleFilter:
 			self.p_List.append(0)
 			self.p_List.append(temp_thetas[x])
 			self.Particle_List.append(self.p)
-		print(len(self.Particle_List))
+
 		self.w = create2.Specs.WheelDistanceInMM/1000
 
 		self.map = lab8_map.Map("lab8_map.json")
@@ -43,21 +43,23 @@ class ParticleFilter:
 		print(len(self.p_List))
 
 	def Movement(self, action):
-		update_x = 0
-		update_y = 0
 		for i in range(self.num_particles):
+			update_x = 0
+			update_y = 0
 			if action == "Move Foward":
 				update_x += .1 * math.cos(self.current_theta)
 				update_y += .1 * math.sin(self.current_theta)
 				self.Particle_List[i].x += update_x
 				self.Particle_List[i].y += update_y
 			if action == "Turn Left":
-				update_theta = .2/self.w 
-				update_theta = math.fmod(update_theta+self.Particle_List[i].theta, 2 * math.pi)
+				update_theta = -.2/self.w
+				self.current_theta += update_theta
+				update_theta = math.fmod(update_theta + self.Particle_List[i].theta, 2 * math.pi)
 				self.Particle_List[i].theta = update_theta
 			if action == "Turn Right":
-				update_theta = -.2/self.w 
-				update_theta = math.fmod(update_theta+self.Particle_List[i].theta, 2 * math.pi)
+				update_theta = .2/self.w
+				self.current_theta += update_theta
+				update_theta = math.fmod(update_theta + self.Particle_List[i].theta, 2 * math.pi)
 				self.Particle_List[i].theta = update_theta
 		self.Estimation()
 		self.update_particles()
@@ -107,8 +109,6 @@ class ParticleFilter:
 			# else:
 			# 	pass
 				#potentially double probability
-		print("num popped")
-		print(num_popped)
 		# 	TODO
 		# self.current_theta = 0
 		# self.current_y = 0

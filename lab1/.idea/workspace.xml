@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="42760a80-7c72-4afb-ae94-29a56ddff9de" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/lab8.py" beforeDir="false" afterPath="$PROJECT_DIR$/lab8.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/partical_filter.py" beforeDir="false" afterPath="$PROJECT_DIR$/partical_filter.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -63,8 +62,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/partical_filter.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="233">
-              <caret line="77" column="30" selection-start-line="77" selection-start-column="30" selection-end-line="77" selection-end-column="30" />
+            <state relative-caret-position="213">
+              <caret line="55" column="36" selection-start-line="55" selection-start-column="36" selection-end-line="55" selection-end-column="36" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -99,8 +98,8 @@
         <option value="$PROJECT_DIR$/particle.py" />
         <option value="$PROJECT_DIR$/particle_filter.py" />
         <option value="$PROJECT_DIR$/Particle.py" />
-        <option value="$PROJECT_DIR$/partical_filter.py" />
         <option value="$PROJECT_DIR$/lab8.py" />
+        <option value="$PROJECT_DIR$/partical_filter.py" />
       </list>
     </option>
   </component>
@@ -179,7 +178,7 @@
       <workItem from="1551301931861" duration="166000" />
       <workItem from="1551753339869" duration="3505000" />
       <workItem from="1552928646468" duration="56000" />
-      <workItem from="1552929362390" duration="6579000" />
+      <workItem from="1552929362390" duration="7642000" />
     </task>
     <task id="LOCAL-00001" summary="sad">
       <created>1551160783959</created>
@@ -192,7 +191,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="56426000" />
+    <option name="totallyTimeSpent" value="57489000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -380,13 +379,6 @@
     <entry file="file://$PROJECT_DIR$/lab8_map.json">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/Particle.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="15" lean-forward="true" selection-start-column="15" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lab8.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="260">
@@ -407,10 +399,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Particle.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="15" lean-forward="true" selection-start-column="15" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/partical_filter.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="233">
-          <caret line="77" column="30" selection-start-line="77" selection-start-column="30" selection-end-line="77" selection-end-column="30" />
+        <state relative-caret-position="213">
+          <caret line="55" column="36" selection-start-line="55" selection-start-column="36" selection-end-line="55" selection-end-column="36" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
