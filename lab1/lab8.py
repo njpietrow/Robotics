@@ -1,6 +1,6 @@
 import lab8_map
 import math
-
+import partical_filter as partf
 
 class Run:
     def __init__(self, factory):
@@ -16,6 +16,7 @@ class Run:
         # Add the IP-address of your computer here if you run on the robot
         self.virtual_create = factory.create_virtual_create()
         self.map = lab8_map.Map("lab8_map.json")
+        self.pf = partf.ParticleFilter()
 
     def run(self):
         # This is an example on how to visualize the pose of our estimated position
@@ -25,8 +26,8 @@ class Run:
         # This is an example on how to show particles
         # the format is x,y,z,theta,x,y,z,theta,...
         data = [0.5, 0.5, 0.1, math.pi/2, 1.5, 1, 0.1, 0]
-        self.virtual_create.set_point_cloud(data)
-
+        #self.virtual_create.set_point_cloud(data)
+        self.virtual_create.set_point_cloud(self.pf.p_List)
         # This is an example on how to estimate the distance to a wall for the given
         # map, assuming the robot is at (0, 0) and has heading math.pi
         print(self.map.closest_distance((0.5,0.5), 0))
@@ -35,11 +36,27 @@ class Run:
         while True:
             b = self.virtual_create.get_last_button()
             if b == self.virtual_create.Button.MoveForward:
+                self.drive
                 print("Forward pressed!")
+                self.drive_direct(100, 100)
+                self.time.sleep(1)
+                self.drive_direct(0, 0)
+                self.time.sleep(.01)
+                self.pf.Movement("Move Foward")
             elif b == self.virtual_create.Button.TurnLeft:
                 print("Turn Left pressed!")
+                self.drive_direct(100, -100)
+                self.time.sleep(1)
+                self.drive_direct(0, 0)
+                self.time.sleep(.01)
+                self.pf.Movement("Turn Left")
             elif b == self.virtual_create.Button.TurnRight:
                 print("Turn Right pressed!")
+                self.drive_direct(-100, 100)
+                self.time.sleep(1)
+                self.drive_direct(0, 0)
+                self.time.sleep(.01)
+                self.pf.Movement("Turn Right")
             elif b == self.virtual_create.Button.Sense:
                 print("Sense pressed!")
 
