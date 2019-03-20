@@ -28,9 +28,10 @@ class Run:
         data = [0.5, 0.5, 0.1, math.pi/2, 1.5, 1, 0.1, 0]
         # self.virtual_create.set_point_cloud(data)
         self.virtual_create.set_point_cloud(self.pf.p_List)
+
         # This is an example on how to estimate the distance to a wall for the given
         # map, assuming the robot is at (0, 0) and has heading math.pi
-        print(self.map.closest_distance((0.5,0.5), 0))
+        # print(self.map.closest_distance((0.5,0.5), 0))
 
         # This is an example on how to detect that a button was pressed in V-REP
         while True:
@@ -50,7 +51,7 @@ class Run:
                 self.create.drive_direct(0, 0)
                 self.time.sleep(.01)
                 self.pf.Movement("Turn Left")
-                # self.virtual_create.set_point_cloud(self.pf.p_List)
+                self.virtual_create.set_point_cloud(self.pf.p_List)
             elif b == self.virtual_create.Button.TurnRight:
                 print("Turn Right pressed!")
                 self.create.drive_direct(-100, 100)
@@ -58,8 +59,11 @@ class Run:
                 self.create.drive_direct(0, 0)
                 self.time.sleep(.01)
                 self.pf.Movement("Turn Right")
-                # self.virtual_create.set_point_cloud(self.pf.p_List)
+                self.virtual_create.set_point_cloud(self.pf.p_List)
             elif b == self.virtual_create.Button.Sense:
                 print("Sense pressed!")
+                distance = self.sonar.get_distance()
+                self.pf.Sensing(distance)
+
 
             self.time.sleep(0.01)
