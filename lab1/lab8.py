@@ -1,5 +1,7 @@
+from pyCreate2 import create2
 import lab8_map
 import math
+import odometry
 import partical_filter as partf
 
 class Run:
@@ -17,8 +19,19 @@ class Run:
         self.virtual_create = factory.create_virtual_create()
         self.map = lab8_map.Map("lab8_map.json")
         self.pf = partf.ParticleFilter()
+        self.create = factory.create_create()
+        self.odometry = odometry.Odometry()
 
     def run(self):
+        self.create.start()
+        self.create.safe()
+
+        # request sensors
+        self.create.start_stream([
+            create2.Sensor.LeftEncoderCounts,
+            create2.Sensor.RightEncoderCounts,
+        ])
+
         # This is an example on how to visualize the pose of our estimated position
         # where our estimate is that the robot is at (x,y,z)=(0.5,0.5,0.1) with heading pi
         self.virtual_create.set_pose((0.5, 0.5, 0.1), 0)
@@ -34,12 +47,16 @@ class Run:
         # print(self.map.closest_distance((0.5,0.5), 0))
 
         # This is an example on how to detect that a button was pressed in V-REP
+
         while True:
+            state = self.create.update()
+            if state is not None:
+                self.odometry.update(state.leftEncoderCounts, state.rightEncoderCounts)
             b = self.virtual_create.get_last_button()
             if b == self.virtual_create.Button.MoveForward:
                 print("Forward pressed!")
                 self.create.drive_direct(100, 100)
-                self.time.sleep(1)
+                self.time.sleep(1.08)
                 self.create.drive_direct(0, 0)
                 self.time.sleep(.01)
                 self.pf.Movement("Move Foward")
@@ -50,6 +67,7 @@ class Run:
                 self.time.sleep(1)
                 self.create.drive_direct(0, 0)
                 self.time.sleep(.01)
+                print(self.odometry.theta)
                 self.pf.Movement("Turn Left")
                 self.virtual_create.set_point_cloud(self.pf.p_List)
             elif b == self.virtual_create.Button.TurnRight:
@@ -58,12 +76,13 @@ class Run:
                 self.time.sleep(1)
                 self.create.drive_direct(0, 0)
                 self.time.sleep(.01)
+                print(self.odometry.theta)
                 self.pf.Movement("Turn Right")
                 self.virtual_create.set_point_cloud(self.pf.p_List)
             elif b == self.virtual_create.Button.Sense:
                 print("Sense pressed!")
                 distance = self.sonar.get_distance()
                 self.pf.Sensing(distance)
-
+                self.virtual_create.set_point_cloud(self.pf.p_List)
 
             self.time.sleep(0.01)
