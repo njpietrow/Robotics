@@ -4,7 +4,11 @@ import math
 import odometry
 import partical_filter as partf
 
+
 class Run:
+    BASE_TIME = 1
+    BASE_SPEED = 100
+
     def __init__(self, factory):
         """Constructor.
 
@@ -22,10 +26,52 @@ class Run:
         self.create = factory.create_create()
         self.odometry = odometry.Odometry()
 
+    def left(self):
+        old_theta = self.odometry.theta
+        self.create.drive_direct(self.BASE_SPEED, -self.BASE_SPEED)
+        end_time = self.time.time() + self.BASE_TIME
+        while self.time.time() < end_time:
+            state = self.create.update()
+            if state is not None:
+                self.odometry.update(state.leftEncoderCounts, state.rightEncoderCounts)
+        self.create.drive_direct(0, 0)
+        self.pf.Movement(0, self.odometry.theta - old_theta, True)
+
+    def right(self):
+        old_theta = self.odometry.theta
+        self.create.drive_direct(-self.BASE_SPEED, self.BASE_SPEED)
+        end_time = self.time.time() + self.BASE_TIME
+        while self.time.time() < end_time:
+            state = self.create.update()
+            if state is not None:
+                self.odometry.update(state.leftEncoderCounts, state.rightEncoderCounts)
+        self.create.drive_direct(0, 0)
+        self.pf.Movement(0, self.odometry.theta - old_theta, True)
+
+    def forward(self):
+        self.create.drive_direct(self.BASE_SPEED, self.BASE_SPEED)
+        end_time = self.time.time() + self.BASE_TIME
+        while self.time.time() < end_time:
+            state = self.create.update()
+            if state is not None:
+                self.odometry.update(state.leftEncoderCounts, state.rightEncoderCounts)
+        self.create.drive_direct(0, 0)
+        self.pf.Movement(self.BASE_SPEED * self.BASE_TIME / 1000, self.odometry.theta, False)
+
+    def update_particles(self):
+        p_List = []
+        for x in range(self.pf.num_particles):
+            p_List.append(self.pf.Particle_List[x].x)
+            p_List.append(self.pf.Particle_List[x].y)
+            p_List.append(0)
+            p_List.append(self.pf.Particle_List[x].theta)
+        return p_List
+
     def run(self):
         self.create.start()
         self.create.safe()
 
+        self.odometry.theta = 0
         # request sensors
         self.create.start_stream([
             create2.Sensor.LeftEncoderCounts,
@@ -49,40 +95,18 @@ class Run:
         # This is an example on how to detect that a button was pressed in V-REP
 
         while True:
-            state = self.create.update()
-            if state is not None:
-                self.odometry.update(state.leftEncoderCounts, state.rightEncoderCounts)
+            self.virtual_create.set_point_cloud(self.update_particles())
+
             b = self.virtual_create.get_last_button()
             if b == self.virtual_create.Button.MoveForward:
-                print("Forward pressed!")
-                self.create.drive_direct(100, 100)
-                self.time.sleep(1.08)
-                self.create.drive_direct(0, 0)
-                self.time.sleep(.01)
-                self.pf.Movement("Move Foward")
-                self.virtual_create.set_point_cloud(self.pf.p_List)
+                self.forward()
             elif b == self.virtual_create.Button.TurnLeft:
-                print("Turn Left pressed!")
-                self.create.drive_direct(100, -100)
-                self.time.sleep(1)
-                self.create.drive_direct(0, 0)
-                self.time.sleep(.01)
-                print(self.odometry.theta)
-                self.pf.Movement("Turn Left")
-                self.virtual_create.set_point_cloud(self.pf.p_List)
+                self.left()
             elif b == self.virtual_create.Button.TurnRight:
-                print("Turn Right pressed!")
-                self.create.drive_direct(-100, 100)
-                self.time.sleep(1)
-                self.create.drive_direct(0, 0)
-                self.time.sleep(.01)
-                print(self.odometry.theta)
-                self.pf.Movement("Turn Right")
-                self.virtual_create.set_point_cloud(self.pf.p_List)
+                self.right()
             elif b == self.virtual_create.Button.Sense:
                 print("Sense pressed!")
                 distance = self.sonar.get_distance()
                 self.pf.Sensing(distance)
-                self.virtual_create.set_point_cloud(self.pf.p_List)
 
             self.time.sleep(0.01)
