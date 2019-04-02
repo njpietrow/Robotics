@@ -2,17 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="42760a80-7c72-4afb-ae94-29a56ddff9de" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/lab10.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vertex.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lab8.ttt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Particle.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab8.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab8_map.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab8_map.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab8automatic.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/nicholas.pietrow.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pa2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/partical_filter.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lab10.py" beforeDir="false" afterPath="$PROJECT_DIR$/lab10.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lab10_map.py" beforeDir="false" afterPath="$PROJECT_DIR$/lab10_map.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lab10_rrt.png" beforeDir="false" afterPath="$PROJECT_DIR$/lab10_rrt.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../lab8&amp;9/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../lab8&amp;9/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -40,7 +34,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pyCreate2/simulation/kuka_lbr4p_vrep.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-200">
+            <state relative-caret-position="-155">
               <caret line="9" column="7" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
             </state>
           </provider>
@@ -49,20 +43,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lab10.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="393">
-              <caret line="71" column="52" selection-start-line="71" selection-start-column="52" selection-end-line="71" selection-end-column="52" />
-              <folding>
-                <element signature="e#0#29#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/Desktop/lab10-6.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="267">
-              <caret line="58" column="35" lean-forward="true" selection-start-line="58" selection-start-column="35" selection-end-line="58" selection-end-column="35" />
+            <state relative-caret-position="236">
+              <caret line="30" column="30" selection-start-line="30" selection-start-column="30" selection-end-line="30" selection-end-column="30" />
               <folding>
                 <element signature="e#0#29#0" expanded="true" />
               </folding>
@@ -78,8 +60,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lab10_map.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="22" column="32" selection-start-line="22" selection-start-column="32" selection-end-line="22" selection-end-column="32" />
+            <state relative-caret-position="150">
+              <caret line="10" column="47" selection-start-line="10" selection-start-column="47" selection-end-line="10" selection-end-column="47" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
               </folding>
@@ -89,13 +71,20 @@
       </file>
     </leaf>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
   <component name="FindInProjectRecents">
     <findStrings>
       <find>100</find>
       <find>300</find>
       <find>num_particles</find>
-      <find>print</find>
       <find>nb</find>
+      <find>print</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -121,6 +110,7 @@
         <option value="$PROJECT_DIR$/pa2.py" />
         <option value="$PROJECT_DIR$/lab8.py" />
         <option value="$PROJECT_DIR$/lab8automatic.py" />
+        <option value="$PROJECT_DIR$/vertex.py" />
         <option value="$PROJECT_DIR$/lab10_map.py" />
         <option value="$PROJECT_DIR$/lab10.py" />
       </list>
@@ -217,7 +207,7 @@
       <workItem from="1554146686253" duration="123000" />
       <workItem from="1554170177851" duration="1159000" />
       <workItem from="1554171684294" duration="5575000" />
-      <workItem from="1554232270152" duration="3617000" />
+      <workItem from="1554232270152" duration="4992000" />
     </task>
     <task id="LOCAL-00001" summary="sad">
       <created>1551160783959</created>
@@ -230,7 +220,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="115445000" />
+    <option name="totallyTimeSpent" value="116820000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -242,10 +232,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1139" height="877" extended-state="0" />
-    <editor active="true" />
+    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24521422" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19241774" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -259,7 +248,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32853982" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.23949045" />
+      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.22650602" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.32866243" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -401,16 +390,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/particle_filter.py" />
     <entry file="file://$PROJECT_DIR$/lab8_map.py" />
-    <entry file="file://$PROJECT_DIR$/lab6_7.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="427">
-          <caret line="75" column="46" selection-start-line="75" selection-start-column="16" selection-end-line="75" selection-end-column="46" />
-          <folding>
-            <element signature="e#0#29#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Library/Caches/PyCharm2018.3/python_stubs/-1199943126/builtins.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="174">
@@ -424,23 +403,6 @@
     <entry file="file://$PROJECT_DIR$/Particle.py" />
     <entry file="file://$PROJECT_DIR$/pa2.py" />
     <entry file="file://$PROJECT_DIR$/partical_filter.py" />
-    <entry file="file://$PROJECT_DIR$/lab10_map.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="32" selection-start-line="22" selection-start-column="32" selection-end-line="22" selection-end-column="32" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pyCreate2/simulation/kuka_lbr4p_vrep.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-200">
-          <caret line="9" column="7" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Desktop/lab10-6.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="267">
@@ -451,13 +413,50 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/lab6_7.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1125">
+          <caret line="75" column="46" selection-start-line="75" selection-start-column="16" selection-end-line="75" selection-end-column="46" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vertex">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vertex.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pyCreate2/simulation/kuka_lbr4p_vrep.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-155">
+          <caret line="9" column="7" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lab10_map.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="47" selection-start-line="10" selection-start-column="47" selection-end-line="10" selection-end-column="47" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/lab10_rrt.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/lab10.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="393">
-          <caret line="71" column="52" selection-start-line="71" selection-start-column="52" selection-end-line="71" selection-end-column="52" />
+        <state relative-caret-position="236">
+          <caret line="30" column="30" selection-start-line="30" selection-start-column="30" selection-end-line="30" selection-end-column="30" />
           <folding>
             <element signature="e#0#29#0" expanded="true" />
           </folding>

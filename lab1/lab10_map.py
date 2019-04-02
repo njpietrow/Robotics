@@ -9,8 +9,6 @@ class Map:
     def __init__(self, file_name):
         self.img = Image.open(file_name)
         self.width, self.height = self.img.size
-        print(self.width)
-        print(self.height)
         self.draw = ImageDraw.Draw(self.img)
 
     def has_obstacle(self, x, y):
